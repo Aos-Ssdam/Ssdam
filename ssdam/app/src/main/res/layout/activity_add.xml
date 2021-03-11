@@ -18,6 +18,7 @@
         />
 
     <ImageView
+        android:id="@+id/iv_Add_Image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/orange"
@@ -27,7 +28,7 @@
         />
 
     <EditText
-        android:id="@+id/diary_Title"
+        android:id="@+id/et_Add_Title"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:hint="제목을 적어주세요"
@@ -40,7 +41,7 @@
         />
 
     <EditText
-        android:id="@+id/diary_Content"
+        android:id="@+id/et_Add_Content"
         android:layout_width="350dp"
         android:layout_height="350dp"
         android:textSize="16dp"
