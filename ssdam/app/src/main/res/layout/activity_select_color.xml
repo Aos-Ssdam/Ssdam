@@ -59,7 +59,7 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/green"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             />
@@ -71,7 +71,7 @@
             android:layout_toRightOf="@+id/iv_Green"
             android:src="@drawable/red"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
 
             />
 
@@ -90,7 +90,7 @@
             android:layout_toLeftOf="@id/iv_Beige"
             android:src="@drawable/orange"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             />
 
         <ImageView
@@ -102,7 +102,7 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/beige"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             />
 
         <ImageView
@@ -112,7 +112,7 @@
             android:layout_toRightOf="@+id/iv_Beige"
             android:src="@drawable/laidgray"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             />
 
     </RelativeLayout>
@@ -129,7 +129,7 @@
             android:layout_toLeftOf="@id/iv_Purple"
             android:src="@drawable/pink"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             />
 
         <ImageView
@@ -141,7 +141,7 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/purple"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             />
 
         <ImageView
@@ -151,7 +151,7 @@
             android:layout_toRightOf="@+id/iv_Purple"
             android:src="@drawable/deeppurple"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             />
 
     </RelativeLayout>
@@ -168,7 +168,7 @@
             android:layout_toLeftOf="@id/iv_DeepGray"
             android:src="@drawable/liteblue"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             />
 
         <ImageView
@@ -180,7 +180,7 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/deepgray"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             />
 
         <ImageView
@@ -190,13 +190,13 @@
             android:layout_toRightOf="@+id/iv_DeepGray"
             android:src="@drawable/navy"
             android:scaleType="centerInside"
-            android:background="@android:color/transparent"
+            android:background="@drawable/imageview_selector"
             />
 
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/colorSelect"
+        android:id="@+id/tv_colorSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="선택"
