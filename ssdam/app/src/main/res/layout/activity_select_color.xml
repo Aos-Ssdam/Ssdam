@@ -1,9 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectColorActivity">
+    tools:context=".SelectColorActivity"
+    android:orientation="vertical"
+    android:gravity="center">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginBottom="40dp"
+       android:gravity="center">
+
+       <TextView
+           android:id="@+id/text1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="느낌"
+           android:textSize="20dp"
+           android:textStyle="bold"
+           android:layout_marginLeft="10dp"
+           />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_toRightOf="@+id/text1"
+           android:text="에 맞는 색을 골라주세요"
+           android:textSize="20dp"
+           android:textColor="#999999"
+
+           />
+
+
+   </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
+
+       <ImageView
+           android:id="@+id/iv_Yellow"
+           android:layout_width="100dp"
+           android:layout_height="100dp"
+           android:layout_toLeftOf="@id/iv_Green"
+           android:src="@drawable/yellow"
+           android:scaleType="centerInside"
+           android:background="@drawable/imageview_selector"
+           />
+
+        <ImageView
+            android:id="@+id/iv_Green"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/green"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_Red"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/iv_Green"
+            android:src="@drawable/red"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/iv_Orange"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toLeftOf="@id/iv_Beige"
+            android:src="@drawable/orange"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            />
+
+        <ImageView
+            android:id="@+id/iv_Beige"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/beige"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            />
+
+        <ImageView
+            android:id="@+id/iv_Laidgray"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/iv_Beige"
+            android:src="@drawable/laidgray"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/iv_Pink"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toLeftOf="@id/iv_Purple"
+            android:src="@drawable/pink"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            />
+
+        <ImageView
+            android:id="@+id/iv_Purple"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/purple"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            />
+
+        <ImageView
+            android:id="@+id/iv_deepPurple"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/iv_Purple"
+            android:src="@drawable/deeppurple"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/iv_Liteblue"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toLeftOf="@id/iv_DeepGray"
+            android:src="@drawable/liteblue"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            />
+
+        <ImageView
+            android:id="@+id/iv_DeepGray"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/deepgray"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            />
+
+        <ImageView
+            android:id="@+id/iv_Navy"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/iv_DeepGray"
+            android:src="@drawable/navy"
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_selector"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_colorSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="선택"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"
+        android:textColor="@color/text"
+        />
+
+</LinearLayout>
