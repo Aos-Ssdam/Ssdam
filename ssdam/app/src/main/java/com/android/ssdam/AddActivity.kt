@@ -3,7 +3,10 @@ package com.android.ssdam
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 
 class AddActivity : AppCompatActivity() {
 
@@ -15,7 +18,11 @@ class AddActivity : AppCompatActivity() {
         var AddBtn = findViewById<TextView>(R.id.tv_DiaryAdd)
         AddBtn.setOnClickListener {
             // 내용이 null이 아니면 추가
-            startActivity(Intent(this,MainActivity::class.java)) }
+            startActivity(Intent(this,MainActivity::class.java))
+
+            }
+
+
     }
 
 }//====

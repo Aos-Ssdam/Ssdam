@@ -16,8 +16,8 @@
         <activity android:name=".AddActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".MainActivity"/>
-        <activity android:name=".Splash"/>
-            <activity android:name=".FindpwActivity" >
+            <activity android:name=".FindpwActivity" />
+        <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
