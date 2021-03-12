@@ -10,9 +10,11 @@
 
    <RelativeLayout
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="0px"
        android:layout_marginBottom="40dp"
-       android:gravity="center">
+       android:gravity="center|bottom"
+       android:layout_weight="1"
+       >
 
        <TextView
            android:id="@+id/text1"
@@ -37,7 +39,14 @@
 
    </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="6"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp">
@@ -194,15 +203,18 @@
             />
 
     </RelativeLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_colorSelect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
         android:text="선택"
         android:layout_marginTop="30dp"
         android:textSize="18dp"
         android:textColor="@color/text"
+        android:layout_weight="1"
+        android:gravity="center|top"
         />
 
 </LinearLayout>

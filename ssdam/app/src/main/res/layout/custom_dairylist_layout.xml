@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+      <ImageView
+          android:layout_width="80dp"
+          android:layout_height="80dp"
+          android:src="@drawable/pink"
+          android:layout_margin="15dp"
+          android:scaleType="centerInside"
+          android:background="@android:color/transparent"
+          />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                android:text="제목"
+                android:textSize="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:layout_marginBottom="8dp"
+                />
+            <TextView
+                android:text="yyyy년 mm월 dd일"
+                android:textSize="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:textColor="#A7A7A7"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
