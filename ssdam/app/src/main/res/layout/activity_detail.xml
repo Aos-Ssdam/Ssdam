@@ -60,6 +60,7 @@
        android:gravity="center">
 
        <TextView
+           android:id="@+id/tv_Detail_Delete"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="삭제"
@@ -69,6 +70,7 @@
            />
 
        <TextView
+           android:id="@+id/tv_Detail_Update"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="수정"
