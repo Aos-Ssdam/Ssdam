@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_ssdam"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ssdam">
+        <activity android:name=".PasswordActivity"></activity>
         <activity android:name=".SelectColorActivity" />
-
         <activity android:name=".SettingActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".AddActivity" />
         <activity android:name=".ListActivity" />
-        <activity android:name=".MainActivity"/>
-            <activity android:name=".FindpwActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".FindpwActivity" />
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
