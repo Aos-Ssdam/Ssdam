@@ -33,12 +33,12 @@
         android:id="@+id/et_password"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
         android:layout_gravity="center"
         android:hint="비밀번호를 입력하세요(6자리)"
         android:textSize="15dp"
         android:password="true"
         />
+
 
     <Button
         android:id="@+id/btn_pwOk"
@@ -47,8 +47,8 @@
         android:layout_gravity="center"
         android:text="저장"
         android:layout_marginTop="30sp"
-        android:visibility="invisible"
         />
+
 
 
 </LinearLayout>

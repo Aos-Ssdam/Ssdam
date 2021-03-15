@@ -30,14 +30,13 @@ class MainActivity : AppCompatActivity() {
             Log.e("태그", "저장된 비밀번호 있음 : " + pref.getString("pwOK", ""))
             if (pwOK == "OK") {
                 Log.e("태그", "pwOk완료 : " + pref.getString("pwOK", ""))
-
                 edit.putString("pwOK", "fail")    // 1번째 인자에는 키 값을, 2번쨰 인자에는 실제 담아둘 값
                 edit.apply()    // 값을 저장 완료
                 Log.e("태그", "pwOK값 초기화 : " + pref.getString("pwOK", ""))
             }else{
                 startActivity(Intent(this,PasswordActivity::class.java))
             }
-        }
+        }//----------------------------------
 
         //sqLite 불러오기
         diaryDB = DiaryDB(this, "newdb.db",null,1)
