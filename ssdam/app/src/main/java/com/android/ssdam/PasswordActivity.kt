@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 
 class PasswordActivity : AppCompatActivity() {
@@ -16,6 +17,8 @@ class PasswordActivity : AppCompatActivity() {
 
         var checkPw = findViewById<EditText>(R.id.et_CheckPw)
         var btn_checkPw = findViewById<Button>(R.id.btn_pwCheck)
+        var tv_findPw = findViewById<TextView>(R.id.tv_findPw)
+
         var pref = getSharedPreferences("pref", 0)
         var savePw = pref.getString("pw", "")
 
@@ -40,6 +43,11 @@ class PasswordActivity : AppCompatActivity() {
 
                 builder.show()
             }
+        }
+
+        // 비밀번호 찾기 클릭
+        tv_findPw.setOnClickListener {
+            startActivity(Intent(this,CheckEmailActivity::class.java))
         }
     }
 }
