@@ -5,43 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PasswordActivity">
+    tools:context=".CheckEmailActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호를 입력하세요."
-        android:textSize="20dp"
-        android:layout_marginTop="200dp"
+        android:text="비밀번호 설정 시 입력한 이메일"
         android:layout_gravity="center"
         />
 
     <EditText
-        android:id="@+id/et_CheckPw"
-        android:layout_width="200dp"
+        android:id="@+id/et_checkEmail"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_gravity="center"
-        android:password="true"
         />
 
     <Button
-        android:id="@+id/btn_pwCheck"
+        android:id="@+id/btn_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="확인"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         />
-
-    <TextView
-        android:id="@+id/tv_findPw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="280dp"
-        android:text="비밀번호를 잊어버리셨나요?" />
 
 </LinearLayout>

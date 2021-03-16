@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_ssdam"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ssdam">
-        <activity android:name=".PasswordActivity"></activity>
+        <activity android:name=".CheckEmailActivity"></activity>
+        <activity android:name=".PasswordActivity" />
         <activity android:name=".SelectColorActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".DetailActivity" />
