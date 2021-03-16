@@ -5,8 +5,21 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.AnimationUtils
+import android.widget.Button
+import android.widget.CalendarView
 import android.widget.TextView
+import android.widget.Toast
+import com.android.ssdam.Calendar.MaxDecorator
+import com.android.ssdam.Calendar.SaturdayDacorator
+import com.android.ssdam.Calendar.SundayDecorator
+import com.android.ssdam.Calendar.TodayDecorator
 import com.android.ssdam.sqLite.DiaryDB
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var diaryDB  : DiaryDB
     lateinit var  database: SQLiteDatabase
 
+    //버튼
+    var isOpen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,29 +57,91 @@ class MainActivity : AppCompatActivity() {
         diaryDB = DiaryDB(this, "newdb.db",null,1)
         database = diaryDB.writableDatabase
 
-        // 나중에 지울꺼... 지금은 이동이 필요해서정
 
-        // 설정
-        var moveSetting = findViewById<TextView>(R.id.btn_Movesetting)
-        moveSetting.setOnClickListener {
-            // 내용이 null이 아니면 추가
-            startActivity(Intent(this,SettingActivity::class.java))
-        }
-
-        // 색선택
-        var moveSelect = findViewById<TextView>(R.id.btn_MoveselectColor)
-        moveSelect.setOnClickListener {
-            // 내용이 null이 아니면 추가
-            startActivity(Intent(this,SelectColorActivity::class.java))
-        }
-
-        // 디테일
-        var moveDetail = findViewById<TextView>(R.id.btn_MoveDetail)
-        moveDetail.setOnClickListener {
-            // 내용이 null이 아니면 추가
-            startActivity(Intent(this,DetailActivity::class.java))
-        }
+        cal()
+        btn()
 
     }//onCreate
+
+    //보람 달력
+    fun cal() {
+
+        val materialCalendar = findViewById<MaterialCalendarView>(R.id.materialCalendar)
+        materialCalendar.isSelected = true
+
+        var startTimeCalendar = Calendar.getInstance()
+        var endTimeCalendar = Calendar.getInstance()
+
+        val currentYear = startTimeCalendar.get(Calendar.YEAR)
+        val currentMonth = startTimeCalendar.get(Calendar.MONTH)
+        val currentDate = startTimeCalendar.get(Calendar.DATE)
+
+        //decorator
+        val enCalendarDay = CalendarDay(
+            endTimeCalendar.get(Calendar.YEAR),
+            endTimeCalendar.get(Calendar.MONTH),
+            endTimeCalendar.get(Calendar.DATE)
+        )
+        val maxDecorator = MaxDecorator(enCalendarDay)
+        val todayDecorator = TodayDecorator(this)
+        val saturdayDacorator = SaturdayDacorator()
+        val sundayDecorator = SundayDecorator()
+
+        materialCalendar.state().edit()
+            .setFirstDayOfWeek(Calendar.SUNDAY)
+            .setMaximumDate(CalendarDay.from(currentYear, currentMonth, 31))
+
+            .commit()
+
+        materialCalendar.addDecorators(
+            saturdayDacorator,
+            sundayDecorator,
+            maxDecorator,
+            todayDecorator
+        )
+
+
+    }//cal
+
+    // 플로팅 버튼
+    fun btn(){
+        val fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open)
+        val fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close)
+        val fabRClockwise = AnimationUtils.loadAnimation(this, R.anim.rotate_clockwise)
+        val fabRAntiClockwise = AnimationUtils.loadAnimation(this, R.anim.rotate_anticlockwise)
+
+        var mainBtn = findViewById<FloatingActionButton>(R.id.main_Btn)
+        var addBtn = findViewById<FloatingActionButton>(R.id.main_Btn_Add)
+        var settingBtn = findViewById<FloatingActionButton>(R.id.main_Btn_Setting)
+
+        mainBtn.setOnClickListener {
+
+            if (isOpen) {
+                settingBtn.startAnimation(fabClose)
+                addBtn.startAnimation(fabClose)
+                mainBtn.startAnimation(fabRClockwise)
+
+                isOpen = false
+            } else {
+                settingBtn.startAnimation(fabOpen)
+                addBtn.startAnimation(fabOpen)
+                mainBtn.startAnimation(fabRAntiClockwise)
+
+                settingBtn.isClickable
+                addBtn.isClickable
+
+                isOpen = true
+
+                addBtn.setOnClickListener {
+                    startActivity(Intent(this,SelectColorActivity::class.java))
+                }
+
+                settingBtn.setOnClickListener{
+                    startActivity(Intent(this,SettingActivity::class.java))
+                }
+            }
+        }
+
+    }//btn
 
 }

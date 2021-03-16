@@ -1,31 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:gravity="center">
+   >
 
-    <Button
-        android:id="@+id/btn_Movesetting"
-        android:layout_width="wrap_content"
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/materialCalendar"
+        app:mcv_selectionColor="@color/custom1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="setting"
+        app:mcv_showOtherDates="defaults"
+        app:mcv_dateTextAppearance="@style/CustomTextAppearance"
+        android:layout_gravity="center"
         />
 
-   <Button
-       android:id="@+id/btn_MoveselectColor"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="select Color"
-       />
-    <Button
-        android:id="@+id/btn_MoveDetail"
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="detail"
+        android:id="@+id/main_Btn_Setting"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="130dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@color/custom1"
+        app:borderWidth="0dp"
+        app:fabSize="mini"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        android:src="@drawable/ic_settings"
+        android:visibility="invisible"
         />
 
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_Btn_Add"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@color/custom1"
+        app:borderWidth="0dp"
+        app:fabSize="mini"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        android:src="@drawable/ic_reate"
+        android:visibility="invisible"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_Btn"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/custom1"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        android:src="@drawable/ic_add"
+        />
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
