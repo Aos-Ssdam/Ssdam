@@ -8,7 +8,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 
 class PasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +23,7 @@ class PasswordActivity : AppCompatActivity() {
 
         var pref = getSharedPreferences("pref", 0)
         var savePw = pref.getString("pw", "")
-
+        var pwFailcheck = 0
 
         // 확인 버튼을 클릭 시
         btn_checkPw.setOnClickListener {
@@ -35,13 +37,23 @@ class PasswordActivity : AppCompatActivity() {
 
                 Log.d("태그", "비밀번호확인창 : " + savePw + "과" + checkPw.text.toString())
             }else{
-                var builder = AlertDialog.Builder(this)
-                builder.setTitle("경고!")
-                builder.setMessage("비밀번호가 틀렸습니다.")
-                builder.setIcon(R.mipmap.ic_launcher)
-                builder.setPositiveButton("확인", null)
+                if (pwFailcheck >= 5){
+                    // 입력창 readonly
+                    checkPw.isEnabled = false
+                    btn_checkPw.isEnabled = false
+                    tv_findPw.isVisible = true
+                    Toast.makeText(this,"비밀번호 5번 이상 틀림", Toast.LENGTH_SHORT).show()
+                }else{
+                    pwFailcheck += 1
+                    Log.d("태그", "비밀번호실패창 : " + pwFailcheck)
+                    var builder = AlertDialog.Builder(this)
+                    builder.setTitle("경고!")
+                    builder.setMessage("비밀번호가 틀렸습니다.(" + pwFailcheck + " / 5)")
+                    builder.setIcon(R.mipmap.ic_launcher)
+                    builder.setPositiveButton("확인", null)
 
-                builder.show()
+                    builder.show()
+                }
             }
         }
 
