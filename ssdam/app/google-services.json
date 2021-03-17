@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "309177131505",
+    "project_id": "ssdam-aos-a2e16",
+    "storage_bucket": "ssdam-aos-a2e16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309177131505:android:49000e9dc129d23380a450",
+        "android_client_info": {
+          "package_name": "com.android.ssdam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309177131505-bako9istlggtph5rge3607mqpegpqob4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0NRtZDEP2WvgjD3q60wJBSqmYFeN5Lvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309177131505-bako9istlggtph5rge3607mqpegpqob4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
