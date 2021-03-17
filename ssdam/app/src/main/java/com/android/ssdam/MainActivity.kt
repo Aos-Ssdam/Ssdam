@@ -5,20 +5,17 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.CalendarView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.android.ssdam.Calendar.MaxDecorator
-import com.android.ssdam.Calendar.SaturdayDacorator
+import com.android.ssdam.Calendar.SaturdayDecorator
 import com.android.ssdam.Calendar.SundayDecorator
-import com.android.ssdam.Calendar.TodayDecorator
 import com.android.ssdam.sqLite.DiaryDB
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -58,16 +55,18 @@ class MainActivity : AppCompatActivity() {
         database = diaryDB.writableDatabase
 
 
-        cal()
+        calendar()
         btn()
 
     }//onCreate
 
     //보람 달력
-    fun cal() {
+    fun calendar() {
 
         val materialCalendar = findViewById<MaterialCalendarView>(R.id.materialCalendar)
         materialCalendar.isSelected = true
+
+
 
         var startTimeCalendar = Calendar.getInstance()
         var endTimeCalendar = Calendar.getInstance()
@@ -83,25 +82,36 @@ class MainActivity : AppCompatActivity() {
             endTimeCalendar.get(Calendar.DATE)
         )
         val maxDecorator = MaxDecorator(enCalendarDay)
-        val todayDecorator = TodayDecorator(this)
-        val saturdayDacorator = SaturdayDacorator()
+        val saturdayDacorator = SaturdayDecorator()
         val sundayDecorator = SundayDecorator()
+
+//        materialCalendar.topbarVisible = false // 월 안보이기
+        materialCalendar.setSelectedDate(CalendarDay.today()) // 오늘 선택
+        materialCalendar.setPadding(0, -20,0, 30)
 
         materialCalendar.state().edit()
             .setFirstDayOfWeek(Calendar.SUNDAY)
             .setMaximumDate(CalendarDay.from(currentYear, currentMonth, 31))
-
             .commit()
 
         materialCalendar.addDecorators(
             saturdayDacorator,
             sundayDecorator,
-            maxDecorator,
-            todayDecorator
-        )
+            maxDecorator )
+
+        //선택한 날 다 3/18 일 수정
+        materialCalendar.setOnDateChangedListener{widget, date, selected ->
+            var msg = currentYear.toString() + "년" + (currentMonth+1).toString() + "월" + currentDate.toString() + "일"
+            var test = date.getDate().toString() // 여기서 뭔갈 하자
+                    runOnUiThread{
+                        Toast.makeText(this, test, Toast.LENGTH_SHORT).show()
+                    }
+        }
 
 
-    }//cal
+
+
+    }//calendar
 
     // 플로팅 버튼
     fun btn(){
@@ -143,5 +153,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }//btn
-
 }
