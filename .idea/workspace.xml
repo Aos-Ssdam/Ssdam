@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a941a89-ce44-434e-8e0f-e4c7b71ea5ae" name="Default Changelist" comment="" />
+    <list default="true" id="9a941a89-ce44-434e-8e0f-e4c7b71ea5ae" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Ssdam.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Ssdam.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

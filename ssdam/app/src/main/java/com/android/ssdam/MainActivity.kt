@@ -2,13 +2,11 @@ package com.android.ssdam
 
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.android.ssdam.Calendar.MaxDecorator
 import com.android.ssdam.Calendar.SaturdayDecorator
 import com.android.ssdam.Calendar.SundayDecorator
@@ -16,7 +14,10 @@ import com.android.ssdam.sqLite.DiaryDB
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.format.TitleFormatter
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,27 +47,30 @@ class MainActivity : AppCompatActivity() {
                 edit.apply()    // 값을 저장 완료
                 Log.e("태그", "pwOK값 초기화 : " + pref.getString("pwOK", ""))
             }else{
-                startActivity(Intent(this,PasswordActivity::class.java))
+                startActivity(Intent(this, PasswordActivity::class.java))
             }
         }//----------------------------------
 
         //sqLite 불러오기
-        diaryDB = DiaryDB(this, "newdb.db",null,1)
+        diaryDB = DiaryDB(this, "newdb.db", null, 1)
         database = diaryDB.writableDatabase
 
 
-        calendar()
+
         btn()
 
     }//onCreate
 
+
+    override fun onResume() {
+        super.onResume()
+        calendar()
+    }
+
     //보람 달력
     fun calendar() {
 
-        val materialCalendar = findViewById<MaterialCalendarView>(R.id.materialCalendar)
-        materialCalendar.isSelected = true
-
-
+        val materialCalendar : MaterialCalendarView = findViewById(R.id.materialCalendar)
 
         var startTimeCalendar = Calendar.getInstance()
         var endTimeCalendar = Calendar.getInstance()
@@ -74,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         val currentYear = startTimeCalendar.get(Calendar.YEAR)
         val currentMonth = startTimeCalendar.get(Calendar.MONTH)
         val currentDate = startTimeCalendar.get(Calendar.DATE)
+
 
         //decorator
         val enCalendarDay = CalendarDay(
@@ -87,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 
 //        materialCalendar.topbarVisible = false // 월 안보이기
         materialCalendar.setSelectedDate(CalendarDay.today()) // 오늘 선택
-        materialCalendar.setPadding(0, -20,0, 30)
+        materialCalendar.setPadding(0, -20, 0, 30)
 
         materialCalendar.state().edit()
             .setFirstDayOfWeek(Calendar.SUNDAY)
@@ -97,16 +102,25 @@ class MainActivity : AppCompatActivity() {
         materialCalendar.addDecorators(
             saturdayDacorator,
             sundayDecorator,
-            maxDecorator )
+            maxDecorator
+        )
 
-        //선택한 날 다 3/18 일 수정
-        materialCalendar.setOnDateChangedListener{widget, date, selected ->
-            var msg = currentYear.toString() + "년" + (currentMonth+1).toString() + "월" + currentDate.toString() + "일"
-            var test = date.getDate().toString() // 여기서 뭔갈 하자
-                    runOnUiThread{
-                        Toast.makeText(this, test, Toast.LENGTH_SHORT).show()
-                    }
+        //선택한 날
+        materialCalendar.setOnDateChangedListener{ widget, date, selected ->
+            var year = date.year.toString()
+            var month = (date.month+1).toString()
+            var date  = date.day.toString()
+            var selectDayMsg : String = year + "년" + month + "월" + date + "일"
+            runOnUiThread{
+                Toast.makeText(this, selectDayMsg, Toast.LENGTH_SHORT).show()
+            }
         }
+
+//        materialCalendar.setTitleFormatter(TitleFormatter {
+//            val simpleDateFormat = SimpleDateFormat("yyyy년 MM월")
+//            simpleDateFormat.format(startTimeCalendar.time) // 다 삼월만 나옴..
+//        })
+
 
 
 
@@ -143,11 +157,11 @@ class MainActivity : AppCompatActivity() {
                 isOpen = true
 
                 addBtn.setOnClickListener {
-                    startActivity(Intent(this,SelectColorActivity::class.java))
+                    startActivity(Intent(this, SelectColorActivity::class.java))
                 }
 
                 settingBtn.setOnClickListener{
-                    startActivity(Intent(this,SettingActivity::class.java))
+                    startActivity(Intent(this, SettingActivity::class.java))
                 }
             }
         }
