@@ -32,7 +32,7 @@ class SettingActivity : AppCompatActivity() {
                var builder = AlertDialog.Builder(this)
                builder.setTitle("알림")
                builder.setMessage("준비중인 기능입니다.")
-               builder.setIcon(R.mipmap.ic_launcher)
+               builder.setIcon(R.mipmap.ic_builder)
                builder.setPositiveButton("확인", null)
 
                builder.show()
@@ -41,7 +41,7 @@ class SettingActivity : AppCompatActivity() {
                var builder = AlertDialog.Builder(this)
                builder.setTitle("알림")
                builder.setMessage("준비중인 기능입니다.")
-               builder.setIcon(R.mipmap.ic_launcher)
+               builder.setIcon(R.mipmap.ic_builder)
                builder.setPositiveButton("확인", null)
 
                builder.show()
@@ -50,7 +50,7 @@ class SettingActivity : AppCompatActivity() {
                var builder = AlertDialog.Builder(this)
                builder.setTitle("알림")
                builder.setMessage("민우이메일넣어야")
-               builder.setIcon(R.mipmap.ic_launcher)
+               builder.setIcon(R.mipmap.ic_builder)
                builder.setPositiveButton("확인", null)
 
                builder.show()
