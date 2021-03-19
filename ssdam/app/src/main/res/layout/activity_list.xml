@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:text="yyyy년 mm월"
         android:textColor="@color/black"
-        android:textSize="17dp"
+        android:textSize="14dp"
         android:gravity="center"
         />
 

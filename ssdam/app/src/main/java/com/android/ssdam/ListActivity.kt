@@ -12,12 +12,15 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        //값 받아오기-------------------------------------
+        val year = intent.getStringExtra("year")
+        val month = intent.getStringExtra("month")
+        //--------------------------------------------
 
-        //값 받아오기
 
-        var month: TextView = findViewById(R.id.list_title)
-
-      month.setText(intent.getStringExtra("date"))
+        // YYYY년 MM월
+        var title: TextView = findViewById(R.id.list_title)
+        title.text = "$year 년 $month 월"
 
 
     }

@@ -14,6 +14,8 @@ import com.android.ssdam.sqLite.DiaryDB
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.format.TitleFormatter
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -26,7 +28,12 @@ class MainActivity : AppCompatActivity() {
     //버튼
     var isOpen = false
 
-    var dayday :String =""
+    //list에 넘길값
+    var year  = ""
+    var month  = ""
+
+    // 일기 추가에 넘길 값
+    var selectDay : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,11 +69,11 @@ class MainActivity : AppCompatActivity() {
     }//onCreate
 
 
-    override fun onResume() {
-        super.onResume()
-       // calendar()
-
-    }
+//    override fun onResume() {
+//        super.onResume()
+//       calendar()
+//
+//    }
 
     //보람 달력
     fun calendar() {
@@ -78,9 +85,19 @@ class MainActivity : AppCompatActivity() {
 
         val currentYear = startTimeCalendar.get(Calendar.YEAR)
         val currentMonth = startTimeCalendar.get(Calendar.MONTH)
-        val currentDate = startTimeCalendar.get(Calendar.DATE)
+        val currentDay = startTimeCalendar.get(Calendar.DATE)
 
 
+      // 넘기는 초기값
+        year = currentYear.toString()
+        month = (currentMonth+1).toString()
+        selectDay = (currentYear.toString() + (currentMonth+1).toString() + currentDay.toString())
+
+        // 달력 설
+        materialCalendar.state().edit()
+                .setFirstDayOfWeek(Calendar.SUNDAY)
+                .setMaximumDate(CalendarDay.from(currentYear, currentMonth, 31))
+                .commit()
 
         //decorator
         val enCalendarDay = CalendarDay(
@@ -92,14 +109,9 @@ class MainActivity : AppCompatActivity() {
         val saturdayDacorator = SaturdayDecorator()
         val sundayDecorator = SundayDecorator()
 
-//        materialCalendar.topbarVisible = false // 월 안보이기
         materialCalendar.setSelectedDate(CalendarDay.today()) // 오늘 선택
         materialCalendar.setPadding(0, -20, 0, 30)
 
-        materialCalendar.state().edit()
-            .setFirstDayOfWeek(Calendar.SUNDAY)
-            .setMaximumDate(CalendarDay.from(currentYear, currentMonth, 31))
-            .commit()
 
         materialCalendar.addDecorators(
                 saturdayDacorator,
@@ -114,12 +126,28 @@ class MainActivity : AppCompatActivity() {
             var date  = date.day.toString()
             var selectDayMsg : String = year + "년" + month + "월" + date + "일"
 
-            var selectday = "" // 선택된 날 저장
 
             runOnUiThread{
                 Toast.makeText(this, selectDayMsg, Toast.LENGTH_SHORT).show()
-                selectday = year + month + date
+                selectDay = year + month + date
             }
+        }
+
+        // 처음 달력 title format
+        materialCalendar.setTitleFormatter(TitleFormatter {
+            val simpleDateFormat = SimpleDateFormat("yyyy년 MM월 ", Locale.KOREA)
+            simpleDateFormat.format(startTimeCalendar.time)
+        })
+
+        //달력 넘길때 값 저장과 format
+        materialCalendar.setOnMonthChangedListener { widget, date ->
+            year = (date.year).toString()
+            month = (date.month + 1 ).toString()
+
+            materialCalendar.setTitleFormatter(TitleFormatter {
+                val simpleDateFormat = SimpleDateFormat("yyyy년 MM월 ", Locale.KOREA)
+                simpleDateFormat.format(date.date)
+            })
         }
 
 
@@ -127,11 +155,14 @@ class MainActivity : AppCompatActivity() {
       materialCalendar.setOnTitleClickListener {
 
           val intent = Intent(this, ListActivity::class.java)
-          dayday = ((currentMonth + 1).toString())
-          intent.putExtra("date", dayday)
+          // 값전달-----------------------------------
+          intent.putExtra("year", year)
+          intent.putExtra("month", month)
+          //-----------------------------------------
           startActivity(intent)
-          Log.d("date", "date" + dayday)
+
       }
+
 
 
 
@@ -168,7 +199,10 @@ class MainActivity : AppCompatActivity() {
                 isOpen = true
 
                 addBtn.setOnClickListener {
-                    startActivity(Intent(this, SelectColorActivity::class.java))
+                    val intent = Intent(this, SelectColorActivity::class.java)
+                    intent.putExtra("selectDay", selectDay)
+                    Log.d("d", "selectDay $selectDay")
+                    startActivity(intent)
                 }
 
                 settingBtn.setOnClickListener{
