@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     //버튼
     var isOpen = false
 
+    var dayday :String =""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         database = diaryDB.writableDatabase
 
 
-//        calendar()
+       calendar()
         btn()
 
     }//onCreate
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        calendar()
+       // calendar()
 
     }
 
@@ -77,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         val currentYear = startTimeCalendar.get(Calendar.YEAR)
         val currentMonth = startTimeCalendar.get(Calendar.MONTH)
         val currentDate = startTimeCalendar.get(Calendar.DATE)
+
 
 
         //decorator
@@ -121,15 +124,14 @@ class MainActivity : AppCompatActivity() {
 
 
         // 리스트 이동
-      materialCalendar.setOnTitleClickListener{
+      materialCalendar.setOnTitleClickListener {
 
           val intent = Intent(this, ListActivity::class.java)
-          intent.putExtra("date", (currentMonth+1))
+          dayday = ((currentMonth + 1).toString())
+          intent.putExtra("date", dayday)
           startActivity(intent)
-          Log.d("date", "date" + (currentMonth+1))
+          Log.d("date", "date" + dayday)
       }
-
-
 
 
 

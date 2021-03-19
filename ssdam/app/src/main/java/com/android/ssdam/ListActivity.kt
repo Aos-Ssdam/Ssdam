@@ -17,7 +17,7 @@ class ListActivity : AppCompatActivity() {
 
         var month: TextView = findViewById(R.id.list_title)
 
-//        month.setText(intent.getStringExtra("date"))
+      month.setText(intent.getStringExtra("date"))
 
 
     }
