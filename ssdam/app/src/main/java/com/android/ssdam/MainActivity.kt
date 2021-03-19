@@ -14,8 +14,6 @@ import com.android.ssdam.sqLite.DiaryDB
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.format.TitleFormatter
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         database = diaryDB.writableDatabase
 
 
-
+//        calendar()
         btn()
 
     }//onCreate
@@ -65,6 +63,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         calendar()
+
     }
 
     //보람 달력
@@ -82,9 +81,9 @@ class MainActivity : AppCompatActivity() {
 
         //decorator
         val enCalendarDay = CalendarDay(
-            endTimeCalendar.get(Calendar.YEAR),
-            endTimeCalendar.get(Calendar.MONTH),
-            endTimeCalendar.get(Calendar.DATE)
+                endTimeCalendar.get(Calendar.YEAR),
+                endTimeCalendar.get(Calendar.MONTH),
+                endTimeCalendar.get(Calendar.DATE)
         )
         val maxDecorator = MaxDecorator(enCalendarDay)
         val saturdayDacorator = SaturdayDecorator()
@@ -100,9 +99,9 @@ class MainActivity : AppCompatActivity() {
             .commit()
 
         materialCalendar.addDecorators(
-            saturdayDacorator,
-            sundayDecorator,
-            maxDecorator
+                saturdayDacorator,
+                sundayDecorator,
+                maxDecorator
         )
 
         //선택한 날
@@ -111,15 +110,24 @@ class MainActivity : AppCompatActivity() {
             var month = (date.month+1).toString()
             var date  = date.day.toString()
             var selectDayMsg : String = year + "년" + month + "월" + date + "일"
+
+            var selectday = "" // 선택된 날 저장
+
             runOnUiThread{
                 Toast.makeText(this, selectDayMsg, Toast.LENGTH_SHORT).show()
+                selectday = year + month + date
             }
         }
 
-//        materialCalendar.setTitleFormatter(TitleFormatter {
-//            val simpleDateFormat = SimpleDateFormat("yyyy년 MM월")
-//            simpleDateFormat.format(startTimeCalendar.time) // 다 삼월만 나옴..
-//        })
+
+        // 리스트 이동
+      materialCalendar.setOnTitleClickListener{
+
+          val intent = Intent(this, ListActivity::class.java)
+          intent.putExtra("date", (currentMonth+1))
+          startActivity(intent)
+          Log.d("date", "date" + (currentMonth+1))
+      }
 
 
 
@@ -127,7 +135,8 @@ class MainActivity : AppCompatActivity() {
 
     }//calendar
 
-    // 플로팅 버튼
+
+// 플로팅 버튼
     fun btn(){
         val fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open)
         val fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close)
@@ -168,3 +177,4 @@ class MainActivity : AppCompatActivity() {
 
     }//btn
 }
+
