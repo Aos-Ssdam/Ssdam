@@ -83,11 +83,21 @@ class MainActivity : AppCompatActivity() {
         val currentMonth = startTimeCalendar.get(Calendar.MONTH)
         val currentDay = startTimeCalendar.get(Calendar.DATE)
 
+        var monthStr = (currentMonth+1).toString()
+        var dateStr = currentDay.toString()
+
+        if (monthStr.toInt() < 10) {
+            monthStr = "0$monthStr"
+        }
+        if (dateStr.toInt() < 10) {
+            dateStr = "0$dateStr"
+        }
 
       // 넘기는 초기값
         year = currentYear.toString()
-        month = (currentMonth+1).toString()
-        selectDay = (currentYear.toString() + (currentMonth+1).toString() + currentDay.toString())
+        month = monthStr
+        selectDay  =currentYear.toString()+ monthStr + dateStr
+
 
         // 달력 설
         materialCalendar.state().edit()
@@ -120,6 +130,14 @@ class MainActivity : AppCompatActivity() {
             var year = date.year.toString()
             var month = (date.month+1).toString()
             var date  = date.day.toString()
+
+            if (month.toInt() < 10) {
+                month = "0$month"
+            }
+            if (date.toInt() < 10) {
+                date = "0$date"
+            }
+
             var selectDayMsg : String = year + "년" + month + "월" + date + "일"
 
 
@@ -138,7 +156,10 @@ class MainActivity : AppCompatActivity() {
         //달력 넘길때 값 저장과 format
         materialCalendar.setOnMonthChangedListener { widget, date ->
             year = (date.year).toString()
-            month = (date.month + 1 ).toString()
+            var monthSt = (date.month + 1 ).toString()
+            if (monthSt.toInt() < 10) {
+                month = "0$monthStr"
+            }
 
             materialCalendar.setTitleFormatter(TitleFormatter {
                 val simpleDateFormat = SimpleDateFormat("yyyy년 MM월 ", Locale.KOREA)
