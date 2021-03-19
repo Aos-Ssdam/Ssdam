@@ -58,10 +58,6 @@ class MainActivity : AppCompatActivity() {
             }
         }//----------------------------------
 
-        //sqLite 불러오기
-        diaryDB = DiaryDB(this, "newdb.db", null, 1)
-        database = diaryDB.writableDatabase
-
 
        calendar()
         btn()

@@ -29,8 +29,7 @@ class AddActivity : AppCompatActivity() {
         //yyyy년 MM월 dd일--------------------------------
          date = selectDay.toString()
         var diaryDate :TextView = findViewById(R.id.tv_Add_Date)
-        diaryDate.text = date
-
+        diaryDate.text = "${date.subSequence(0,4)}년 ${date.subSequence(4,5)}월 ${date.subSequence(6,date.length)}일"
 
         //이미지
         var addImage: ImageView = findViewById(R.id.iv_Add_Image)
