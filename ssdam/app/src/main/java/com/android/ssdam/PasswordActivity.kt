@@ -58,6 +58,8 @@ class PasswordActivity : AppCompatActivity() {
                     builder.setPositiveButton("확인", null)
 
                     builder.show()
+
+                    checkPw.setText("")
                 }
             }
         }

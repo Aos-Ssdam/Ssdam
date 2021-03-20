@@ -78,18 +78,19 @@ class CheckEmailActivity : AppCompatActivity() {
                 .build()
             PhoneAuthProvider.verifyPhoneNumber(options)
 
-
         }
 
         // 확인 버튼 눌렀을때 인증번호 맞는지 판단
         btn_check.setOnClickListener {
 
             if (et_CheckPhone.text.toString().isEmpty()){
-                Toast.makeText(this,"입력해주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"인증번호를 입력해주세요", Toast.LENGTH_SHORT).show()
             }else{
                 verifyPhoneNumberWithCode(authNum, et_CheckPhone.text.toString())
                 Toast.makeText(this,"비밀번호가 초기화 되었습니다.", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this,FindpwActivity::class.java))
+                startActivity(Intent(this,MainActivity::class.java))
+
+                // 비밀번호 초기화
                 var pref = getSharedPreferences("pref", 0)
                 var edit = pref.edit()  // 수정모드
                 edit.remove("pw")    // 1번째 인자에는 키 값을, 2번쨰 인자에는 실제 담아둘 값

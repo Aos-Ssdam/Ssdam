@@ -53,39 +53,52 @@ class FindpwActivity : AppCompatActivity() {
             var setpw = et_password.text.toString()
             var setphone = et_phone.text.toString()
 
-            if (setpw.length != 6){
+            if (setpw.length != 4){
                 var builder = AlertDialog.Builder(this)
                 builder.setTitle("알림")
-                builder.setMessage("비밀번호 6자리를 입력해 주세요.")
+                builder.setMessage("비밀번호 4자리를 입력해 주세요.")
                 builder.setIcon(R.mipmap.ic_launcher)
                 builder.setPositiveButton("확인", null)
 
                 builder.show()
 
             }else{
-//
-//                if(setphone.length != 11){
-//                    var builder = AlertDialog.Builder(this)
-//                    builder.setTitle("알림")
-//                    builder.setMessage("전화번호를 정확하게 입력해주세요.")
-//                    builder.setIcon(R.mipmap.ic_launcher)
-//                    builder.setPositiveButton("확인", null)
-//
-//                    builder.show()
-//                }
 
-                    var pref = getSharedPreferences("pref", 0)
-                    var edit = pref.edit()  // 수정모드
-                    edit.putString("pw", setpw)    // 1번째 인자에는 키 값을, 2번쨰 인자에는 실제 담아둘 값
-                    edit.putString("phone", setphone)
-                    edit.apply()    // 값을 저장 완료
+                if(setphone.length != 10){
+                    var builder = AlertDialog.Builder(this)
+                    builder.setTitle("알림")
+                    builder.setMessage("전화번호를 정확하게 입력해주세요.")
+                    builder.setIcon(R.mipmap.ic_launcher)
+                    builder.setPositiveButton("확인", null)
 
-                    Toast.makeText(this, "정보가 저장되었습니다.", Toast.LENGTH_SHORT).show()
-                    Log.d("태그","설정 페이지 비밀번호 & 이메일 : " + pref.getString("pw","") + " & " + pref.getString("phone", ""))
+                    builder.show()
 
-                    val intent = Intent(this, SettingActivity::class.java)
-                     startActivity(intent)
+                }else{
 
+                    if (setphone.substring(0,2) != "10") {   // 10으로 시작하는지 확인
+
+                        var builder = AlertDialog.Builder(this)
+                        builder.setTitle("알림")
+                        builder.setMessage("전화번호를 형식에 맞게 입력해주세요.")
+                        builder.setIcon(R.mipmap.ic_launcher)
+                        builder.setPositiveButton("확인", null)
+
+                        builder.show()
+
+                    }else{
+                        var pref = getSharedPreferences("pref", 0)
+                        var edit = pref.edit()  // 수정모드
+                        edit.putString("pw", setpw)    // 1번째 인자에는 키 값을, 2번쨰 인자에는 실제 담아둘 값
+                        edit.putString("phone", setphone)
+                        edit.apply()    // 값을 저장 완료
+
+                        Toast.makeText(this, "정보가 저장되었습니다.", Toast.LENGTH_SHORT).show()
+                        Log.d("태그","설정 페이지 비밀번호 & 이메일 : " + pref.getString("pw","") + " & " + pref.getString("phone", ""))
+
+                        val intent = Intent(this, SettingActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
             }
         }
     }
