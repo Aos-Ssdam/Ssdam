@@ -41,7 +41,7 @@
         android:id="@+id/et_Detail_Title"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:hint="제목을 적어주세요"
+        android:hint="제목"
         android:textColorHint="#c8c8c8"
         android:textSize="16dp"
         android:textAlignment="center"
