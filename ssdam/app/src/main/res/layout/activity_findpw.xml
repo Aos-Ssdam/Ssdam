@@ -37,20 +37,22 @@
         android:hint="비밀번호를 입력하세요(6자리)"
         android:textSize="15dp"
         android:password="true"
+        android:textAlignment="center"
         />
     <EditText
-        android:id="@+id/et_email"
+        android:id="@+id/et_phone"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:hint="이메일을 입력하세요.(비밀번호 찾기))"
+        android:hint="핸드폰번호 입력하세요.(비밀번호 찾기)"
         android:textSize="15dp"
         android:layout_marginTop="20dp"
+        android:textAlignment="center"
         />
 
 
     <Button
-        android:id="@+id/btn_pwOk"
+        android:id="@+id/btn_phoneOk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

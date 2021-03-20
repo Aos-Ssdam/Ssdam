@@ -14,20 +14,20 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
     <TextView
-        android:id="@+id/tv_pwcheckEmail"
+        android:id="@+id/tv_pwcheckPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:layout_weight="5"
         android:layout_marginLeft="30dp"
         />
 
     <Button
-        android:id="@+id/btn_sendEmail"
+        android:id="@+id/btn_sendPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="발송하기"
+        android:text="인증번호 전송"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:layout_marginRight="30dp"
@@ -43,7 +43,7 @@
         >
 
     <EditText
-        android:id="@+id/et_checkEmail"
+        android:id="@+id/et_checkPhone"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
