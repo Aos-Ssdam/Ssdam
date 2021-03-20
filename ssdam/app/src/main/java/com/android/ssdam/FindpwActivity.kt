@@ -63,16 +63,17 @@ class FindpwActivity : AppCompatActivity() {
                 builder.show()
 
             }else{
+//
+//                if(setphone.length != 11){
+//                    var builder = AlertDialog.Builder(this)
+//                    builder.setTitle("알림")
+//                    builder.setMessage("전화번호를 정확하게 입력해주세요.")
+//                    builder.setIcon(R.mipmap.ic_launcher)
+//                    builder.setPositiveButton("확인", null)
+//
+//                    builder.show()
+//                }
 
-                if(setphone.length != 11){
-                    var builder = AlertDialog.Builder(this)
-                    builder.setTitle("알림")
-                    builder.setMessage("전화번호를 정확하게 입력해주세요.")
-                    builder.setIcon(R.mipmap.ic_launcher)
-                    builder.setPositiveButton("확인", null)
-
-                    builder.show()
-                }else{
                     var pref = getSharedPreferences("pref", 0)
                     var edit = pref.edit()  // 수정모드
                     edit.putString("pw", setpw)    // 1번째 인자에는 키 값을, 2번쨰 인자에는 실제 담아둘 값
@@ -84,7 +85,7 @@ class FindpwActivity : AppCompatActivity() {
 
                     val intent = Intent(this, SettingActivity::class.java)
                      startActivity(intent)
-                }
+
             }
         }
     }

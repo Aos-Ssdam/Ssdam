@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:309177131505:android:49000e9dc129d23380a450",
+        "mobilesdk_app_id": "1:309177131505:android:aa1a3b2efe255dc180a450",
         "android_client_info": {
           "package_name": "com.android.ssdam"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "309177131505-g8dv6tdf5akosgcoert1ltdpg596oved.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.ssdam",
+            "certificate_hash": "79bb86fb2710784c089505a6dcdaf201f2523b86"
+          }
+        },
         {
           "client_id": "309177131505-bako9istlggtph5rge3607mqpegpqob4.apps.googleusercontent.com",
           "client_type": 3
