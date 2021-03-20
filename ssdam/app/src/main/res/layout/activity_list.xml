@@ -9,12 +9,13 @@
     android:gravity="center">
 
     <TextView
+        android:id="@+id/list_title"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
         android:text="yyyy년 mm월"
         android:textColor="@color/black"
-        android:textSize="17dp"
+        android:textSize="14dp"
         android:gravity="center"
         />
 

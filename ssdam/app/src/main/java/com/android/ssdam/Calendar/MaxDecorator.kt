@@ -6,7 +6,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 
-class MaxDecorator(max:CalendarDay):DayViewDecorator {
+class MaxDecorator(max: CalendarDay): DayViewDecorator {
     val maxDay = max
 
     override fun shouldDecorate(day: CalendarDay?): Boolean {

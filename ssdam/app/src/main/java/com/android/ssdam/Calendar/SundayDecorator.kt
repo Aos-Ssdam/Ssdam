@@ -18,7 +18,7 @@ class SundayDecorator : DayViewDecorator{
         return weekDay == Calendar.SUNDAY
     }
     override fun decorate(view: DayViewFacade?) {
-        view?.addSpan(object: ForegroundColorSpan(Color.parseColor("#CE9C9D")) {})
+        view?.addSpan(object: ForegroundColorSpan(Color.parseColor("#C58A8B")) {})
 
     }
 

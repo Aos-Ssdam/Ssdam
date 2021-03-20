@@ -8,20 +8,49 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 
 
 class SelectColorActivity : AppCompatActivity() {
 
+
+    var selectColor = ""
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_color)
+
+        //값 받아오기----------------------------------
+        val selectDay = intent.getStringExtra("selectDay")
+        Log.d("d","여긴 색선택이다 $selectDay")
+        //--------------------------------------------
+
 
         imageViewClick()
 
         // 선택
         var selectBtn = findViewById<TextView>(R.id.tv_colorSelect)
         selectBtn.setOnClickListener {
-            startActivity(Intent(this@SelectColorActivity,AddActivity::class.java)) }
+
+            if (selectColor == "") {
+                var builder = AlertDialog.Builder(this)
+                builder.setTitle("알림")
+                builder.setMessage("색을 선택해주세요.")
+                builder.setIcon(R.mipmap.ic_builder)
+                builder.setPositiveButton("확인", null)
+
+                builder.show()
+            } else {
+                //값 전달-----------------------------------------------------------------
+                val intent = Intent(this, AddActivity::class.java)
+                intent.putExtra("selectDay", selectDay)
+                intent.putExtra("selectColor", selectColor)
+                Log.d("d", "색선택이다 $selectColor")
+                startActivity(intent)
+                //-----------------------------------------------------------------------
+            }
+        }//selectBtn
 
     }
 
@@ -53,6 +82,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "yellow"
         }
         green.setOnClickListener {
             yellow.isSelected = false
@@ -67,6 +98,9 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "green"
+
         }
         red.setOnClickListener {
             yellow.isSelected = false
@@ -81,6 +115,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "red"
         }
 
         orange.setOnClickListener {
@@ -96,6 +132,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "orange"
         }
         beige.setOnClickListener {
             yellow.isSelected = false
@@ -110,6 +148,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "beige"
         }
         laidGray.setOnClickListener {
             yellow.isSelected = false
@@ -124,6 +164,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "laidGray"
         }
 
         pink.setOnClickListener {
@@ -139,6 +181,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "pink"
         }
         purple.setOnClickListener {
             yellow.isSelected = false
@@ -153,6 +197,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "purple"
         }
         deepPurple.setOnClickListener {
             yellow.isSelected = false
@@ -167,6 +213,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "deepPurple"
         }
 
         liteBlue.setOnClickListener {
@@ -182,6 +230,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = true
             deepGray.isSelected = false
             navy.isSelected = false
+
+            selectColor = "liteBlue"
         }
         deepGray.setOnClickListener {
             yellow.isSelected = false
@@ -196,6 +246,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = true
             navy.isSelected = false
+
+            selectColor = "deepGray"
         }
         navy.setOnClickListener {
             yellow.isSelected = false
@@ -210,6 +262,8 @@ class SelectColorActivity : AppCompatActivity() {
             liteBlue.isSelected = false
             deepGray.isSelected = false
             navy.isSelected = true
+
+            selectColor = "navy"
         }
 
     }//imageViewClick

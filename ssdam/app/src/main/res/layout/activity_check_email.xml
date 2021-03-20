@@ -19,6 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20dp"
+        android:textAlignment="center"
+        android:textSize="15dp"
         android:layout_weight="5"
         android:layout_marginLeft="30dp"
         />
@@ -50,6 +52,7 @@
         android:layout_weight="1"
         android:layout_marginLeft="30dp"
         android:visibility="invisible"
+        android:textAlignment="center"
         />
 
     <Button
