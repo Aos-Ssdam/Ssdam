@@ -97,6 +97,7 @@ class ListActivity : AppCompatActivity() {
             intent!!.putExtra("imageFileName", members!![position].imageFileName)
             intent!!.putExtra("title", members!![position].title)
             intent!!.putExtra("content", members!![position].content)
+            Log.d("리스트에서 보낸다", "${members!![position].imageFileName}")
             startActivity(intent)
         }
     }

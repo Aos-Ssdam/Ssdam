@@ -19,6 +19,9 @@ class DetailActivity : AppCompatActivity() {
 
     var date: String? = null
     var color: String? = null
+    var dTitle : String? = null
+    var dContent: String? = null
+
     var Title: EditText? = null
     var Content: EditText? = null
 
@@ -40,15 +43,16 @@ class DetailActivity : AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
         //-----------------------------------------------------------
+        Log.d("디테일에서 받는다", "$imageFileName")
         color = imageFileName
+        dTitle = title
+        dContent = content
 
 
-
-
-        //yyyy년 MM월 dd일--------------------------------
+        //yyyy년 MM월 dd일
         date = insertDate.toString()
-        var diaryDate :TextView = findViewById(R.id.tv_Detail_Date)
-        diaryDate.text = "${date!!.subSequence(0,4)}년 ${date!!.subSequence(4,6)}월 ${date!!.subSequence(6,date!!.length)}일"
+        var diaryDate: TextView = findViewById(R.id.tv_Detail_Date)
+        diaryDate.text = "${date!!.subSequence(0, 4)}년 ${date!!.subSequence(4, 6)}월 ${date!!.subSequence(6, date!!.length)}일"
 
         image()
 
@@ -56,8 +60,23 @@ class DetailActivity : AppCompatActivity() {
         Title = findViewById(R.id.et_Detail_Title)
         Content = findViewById(R.id.et_Detail_Content)
 
-        Title!!.setText(title)
-        Content!!.setText(content)
+        Title!!.setText(dTitle)
+        Content!!.setText(dContent)
+
+
+        //이미지 변경 ---------------------------------------------------------------------
+        var image: ImageView = findViewById(R.id.iv_Detail_Image)
+        image.setOnClickListener {
+            intent = Intent(this, UpdateColorActivity::class.java)
+            intent!!.putExtra("insertDate", date)
+            intent!!.putExtra("title", dTitle)
+            intent!!.putExtra("content", dContent)
+            startActivity(intent)
+        }
+
+        val updatecolor = intent.getStringExtra("updateColor")
+        color = updatecolor
+        //--------------------------------------------------------------------------------
 
 
         deleteBtn = findViewById(R.id.tv_Detail_Delete)
@@ -66,6 +85,12 @@ class DetailActivity : AppCompatActivity() {
         updateBtn = findViewById(R.id.tv_Detail_Update)
         updateBtn!!.setOnClickListener(updateBtnOnClick)
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        image()
     }
 
     // 색
@@ -132,6 +157,10 @@ class DetailActivity : AppCompatActivity() {
 
     //수정
     private var updateBtnOnClick = View.OnClickListener {
+        var db: SQLiteDatabase? = null
+
+        dTitle = Title!!.text.toString()
+        dContent = Content!!.text.toString()
 
             // AlertDialog에서 네, 아니요 선택
             var updateAlert = AlertDialog.Builder(this)
@@ -144,8 +173,18 @@ class DetailActivity : AppCompatActivity() {
                 override fun onClick(dialog: DialogInterface?, which: Int) {
                     when(which) {
                         DialogInterface.BUTTON_POSITIVE ->
-                                startActivity(Intent(this@DetailActivity,ListActivity::class.java))
+                            try {
+                                db = diaryDB!!.writableDatabase
+                                val query = "UPDATE contents set cTitle = '${dTitle}', cContent = '${dContent}', cImageFileName = '${color}'  WHERE cInsertDate = '${date}';"
+                                Log.d("수정", "$dTitle, $dContent, $color, $date")
+                                db!!.execSQL(query)
+                                diaryDB!!.close()
+                            }catch (e: Exception){
+                                print(e.printStackTrace())
+                            }
                     }
+                    finish()
+                    startActivity(Intent(this@DetailActivity,MainActivity::class.java))
                 }
             }
 
@@ -156,5 +195,8 @@ class DetailActivity : AppCompatActivity() {
     }//update
 
 }//===
+
+
+
 
 
