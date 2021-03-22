@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.ssdam.Calendar.MaxDecorator
 import com.android.ssdam.Calendar.SaturdayDecorator
 import com.android.ssdam.Calendar.SundayDecorator
+import com.android.ssdam.sqLite.Diary
 import com.android.ssdam.sqLite.DiaryDB
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -24,10 +25,6 @@ class MainActivity : AppCompatActivity() {
     //뒤로가기 연속 클릭 대기 시간
     var mBackWait:Long = 0
 
-    //sqLite
-    lateinit var diaryDB  : DiaryDB
-    lateinit var  database: SQLiteDatabase
-
     //버튼
     var isOpen = false
 
@@ -38,9 +35,22 @@ class MainActivity : AppCompatActivity() {
     // 일기 추가에 넘길 값
     var selectDay : String = ""
 
+    val materialCalendar : MaterialCalendarView? = null
+
+
+    //db select
+    private var days: ArrayList<Diary>? = ArrayList()
+    private var dirayDB: DiaryDB? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //sqlite-----------------
+
+        dirayDB = DiaryDB((this))
+
+        //-----------------------
 
         // 세미 실행시 비밀번호 입력창 나오도록 구현
         var pref = getSharedPreferences("pref", 0)
@@ -63,16 +73,17 @@ class MainActivity : AppCompatActivity() {
 
 
        calendar()
+        connectGetData()
         btn()
 
     }//onCreate
 
 
-//    override fun onResume() {
-//        super.onResume()
-//       calendar()
-//
-//    }
+    override fun onResume() {
+        super.onResume()
+        connectGetData()
+       calendar()
+    }
 
     //보람 달력
     fun calendar() {
@@ -108,22 +119,26 @@ class MainActivity : AppCompatActivity() {
                 .setMaximumDate(CalendarDay.from(currentYear, currentMonth, 31))
                 .commit()
 
-        //decorator
+
         val enCalendarDay = CalendarDay(
                 endTimeCalendar.get(Calendar.YEAR),
                 endTimeCalendar.get(Calendar.MONTH),
                 endTimeCalendar.get(Calendar.DATE)
         )
-        val maxDecorator = MaxDecorator(enCalendarDay)
-        val saturdayDacorator = SaturdayDecorator()
-        val sundayDecorator = SundayDecorator()
 
         materialCalendar.setSelectedDate(CalendarDay.today()) // 오늘 선택
         materialCalendar.setPadding(0, -20, 0, 30)
 
 
+        //decorator
+        val maxDecorator = MaxDecorator(enCalendarDay)
+        val saturdayDecorator = SaturdayDecorator()
+        val sundayDecorator = SundayDecorator()
+
+
+
         materialCalendar.addDecorators(
-                saturdayDacorator,
+                saturdayDecorator,
                 sundayDecorator,
                 maxDecorator
         )
@@ -158,16 +173,18 @@ class MainActivity : AppCompatActivity() {
 
         //달력 넘길때 값 저장과 format
         materialCalendar.setOnMonthChangedListener { widget, date ->
-            year = (date.year).toString()
-            var monthSt = (date.month + 1 ).toString()
-            if (monthSt.toInt() < 10) {
-                month = "0$monthStr"
-            }
 
             materialCalendar.setTitleFormatter(TitleFormatter {
                 val simpleDateFormat = SimpleDateFormat("yyyy년 MM월 ", Locale.KOREA)
                 simpleDateFormat.format(date.date)
             })
+            year = (date.year).toString()
+            var monthSt = (date.month+1).toString()
+
+            if (monthSt.toInt() < 10) {
+                month = "0$monthSt"
+            }
+
         }
 
 
@@ -182,9 +199,6 @@ class MainActivity : AppCompatActivity() {
           startActivity(intent)
 
       }
-
-
-
 
     }//calendar
 
@@ -232,6 +246,37 @@ class MainActivity : AppCompatActivity() {
         }
 
     }//btn
+
+
+    private fun connectGetData(){
+
+        var db: SQLiteDatabase? = null
+
+        try{
+            days!!.clear()
+            db = dirayDB!!.readableDatabase
+            val query = "Select  cInsertDate, cImageFileName From contents;"
+            val cursor = db!!.rawQuery(query,null)
+            while (cursor.moveToNext()) {
+                val cInsertDate = cursor.getString(0)
+                val cImageFileName = cursor.getString(1)
+                val day = Diary(cInsertDate,cImageFileName)
+                days!!.add(day)
+
+                Log.d("data", "$cInsertDate , $cImageFileName")
+
+            }
+            cursor.close()
+            dirayDB!!.close()
+        }catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Select Error", Toast.LENGTH_SHORT).show()
+        }
+
+    }//connectGetData
+
+
+
 
 
     override fun onBackPressed() {

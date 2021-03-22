@@ -50,6 +50,8 @@ class AddActivity : AppCompatActivity() {
         var diaryDate :TextView = findViewById(R.id.tv_Add_Date)
         diaryDate.text = "${date.subSequence(0,4)}년 ${date.subSequence(4,6)}월 ${date.subSequence(6,date.length)}일"
 
+        Log.d("date","$date")
+
         image()
 
         // 제목, 내용

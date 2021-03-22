@@ -22,6 +22,8 @@ class ListActivity : AppCompatActivity() {
     private var dirayDB: DiaryDB? = null
     private var lvDiary: ListView? = null
 
+    var dateYM :String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
@@ -37,11 +39,13 @@ class ListActivity : AppCompatActivity() {
         val month = intent.getStringExtra("month")
         //--------------------------------------------
 
+        dateYM = year + month
+        Log.d("dateYM", "$dateYM")
+
 
         // YYYY년 MM월
         var title: TextView = findViewById(R.id.list_title)
         title.text = "$year 년 $month 월"
-
 
     }
 
@@ -52,7 +56,7 @@ class ListActivity : AppCompatActivity() {
         try{
             members!!.clear()
             db = dirayDB!!.readableDatabase
-            val query = "Select cTitle, cInsertDate, cImageFileName, cContent From contents order by cInsertDate desc;"
+            val query = "Select cTitle, cInsertDate, cImageFileName, cContent From contents where cInsertDate like '$dateYM%' order by cInsertDate desc;"
             val cursor = db!!.rawQuery(query,null)
             while (cursor.moveToNext()) {
                 val cTitle = cursor.getString(0)
@@ -101,6 +105,9 @@ class ListActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
+
 
 
 
