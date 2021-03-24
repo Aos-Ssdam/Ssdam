@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".AddActivity"
     android:orientation="vertical"
+    android:id="@+id/ll_Add"
     android:gravity="center" >
 
     <TextView
@@ -47,7 +48,6 @@
             android:textAlignment="center"
             android:gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-
             />
 
         <EditText
