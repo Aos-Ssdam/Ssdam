@@ -1,11 +1,13 @@
 package com.android.ssdam
 
+import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.android.ssdam.sqLite.DiaryDB
@@ -62,6 +64,27 @@ class AddActivity : AppCompatActivity() {
         addBtn = findViewById(R.id.tv_DiaryAdd)
         addBtn!!.setOnClickListener(onAddBtnClickListener)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val ll_Add = findViewById<LinearLayout>(R.id.ll_Add)
+        ll_Add?.setOnClickListener {
+            hideKeyboard()
+        }
+
+    }
+
+    // 키보드 내리기
+    fun hideKeyboard()
+    {
+        var view = this.currentFocus
+
+        if(view != null)
+        {
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     fun image(){

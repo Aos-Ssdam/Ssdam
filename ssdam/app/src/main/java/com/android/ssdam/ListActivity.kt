@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.ssdam.sqLite.Diary
 import com.android.ssdam.sqLite.DiaryDB
 import com.android.ssdam.sqLite.diraryAdapter
+import org.w3c.dom.Text
 import java.util.ArrayList
 
 class ListActivity : AppCompatActivity() {
@@ -65,8 +66,17 @@ class ListActivity : AppCompatActivity() {
                 val cContent = cursor.getString(3)
                 val member = Diary(cTitle,cInsertDate,cImageFileName,cContent)
                 members!!.add(member)
+            }
 
+            // 뽑아올 데이터 있으면 Frame 전환
+            if(members?.size != 0){
+                val list = findViewById<ListView>(R.id.diaryList)
+                val list_Title = findViewById<TextView>(R.id.list_title)
+                val list_Empty = findViewById<TextView>(R.id.list_tv_Empty)
 
+                list.visibility = View.VISIBLE
+                list_Title.visibility = View.VISIBLE
+                list_Empty.visibility = View.GONE
             }
             cursor.close()
             dirayDB!!.close()

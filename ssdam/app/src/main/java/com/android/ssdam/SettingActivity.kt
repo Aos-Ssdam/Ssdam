@@ -49,7 +49,7 @@ class SettingActivity : AppCompatActivity() {
               // Toast.makeText(this, "개발자에게", Toast.LENGTH_SHORT).show()
                var builder = AlertDialog.Builder(this)
                builder.setTitle("알림")
-               builder.setMessage("민우이메일넣어야")
+               builder.setMessage("개발자 이메일 : tnctis21@naver.com")
                builder.setIcon(R.mipmap.ic_builder)
                builder.setPositiveButton("확인", null)
 
