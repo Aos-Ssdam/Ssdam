@@ -66,6 +66,7 @@ class ListActivity : AppCompatActivity() {
                 val member = Diary(cTitle,cInsertDate,cImageFileName,cContent)
                 members!!.add(member)
 
+
             }
             cursor.close()
             dirayDB!!.close()

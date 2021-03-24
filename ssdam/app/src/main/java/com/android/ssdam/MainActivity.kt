@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.ssdam.Calendar.ColorDecorator
 import com.android.ssdam.Calendar.MaxDecorator
 import com.android.ssdam.Calendar.SaturdayDecorator
 import com.android.ssdam.Calendar.SundayDecorator
@@ -18,6 +19,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.HashSet
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +43,10 @@ class MainActivity : AppCompatActivity() {
     //db select
     private var days: ArrayList<Diary>? = ArrayList()
     private var dirayDB: DiaryDB? = null
+    private var calDay: ArrayList<CalendarDay> = ArrayList()
+    private var calColor:String? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        connectGetData()
+       // connectGetData()
        calendar()
     }
 
@@ -113,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         selectDay  =currentYear.toString()+ monthStr + dateStr
 
 
-        // 달력 설
+        // 달력 설정
         materialCalendar.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
                 .setMaximumDate(CalendarDay.from(currentYear, currentMonth, 31))
@@ -134,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         val maxDecorator = MaxDecorator(enCalendarDay)
         val saturdayDecorator = SaturdayDecorator()
         val sundayDecorator = SundayDecorator()
-
+     //   val colorDecorator = ColorDecorator()
 
 
         materialCalendar.addDecorators(
@@ -142,6 +148,9 @@ class MainActivity : AppCompatActivity() {
                 sundayDecorator,
                 maxDecorator
         )
+
+
+
 
         //선택한 날
         materialCalendar.setOnDateChangedListener{ widget, date, selected ->
@@ -255,17 +264,25 @@ class MainActivity : AppCompatActivity() {
         try{
             days!!.clear()
             db = dirayDB!!.readableDatabase
-            val query = "Select  cInsertDate, cImageFileName From contents;"
-            val cursor = db!!.rawQuery(query,null)
+            val query = "Select  * From contents;"
+            val cursor = db!!.rawQuery(query, null)
             while (cursor.moveToNext()) {
-                val cInsertDate = cursor.getString(0)
-                val cImageFileName = cursor.getString(1)
-                val day = Diary(cInsertDate,cImageFileName)
+                val cImageFileName = cursor.getString(3)
+                val cInsertDate= cursor.getString(4)
+                val day = Diary(cInsertDate, cImageFileName)
                 days!!.add(day)
+                Log.d("cInsertDate","$cInsertDate $cImageFileName")
+                var cYear = (cInsertDate.substring(0,4)).toInt()
+                var cMonth = (cInsertDate.substring(4,6)).toInt()
+                var cDay = (cInsertDate.substring(6,cInsertDate.length)).toInt()
 
-                Log.d("data", "$cInsertDate , $cImageFileName")
+                calDay = arrayListOf(CalendarDay.from(cYear,cMonth,cDay))
+
+                calColor =  cImageFileName
+                Log.d("calday","$calDay")
 
             }
+
             cursor.close()
             dirayDB!!.close()
         }catch (e: Exception) {
@@ -274,7 +291,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }//connectGetData
-
 
 
 
@@ -296,4 +312,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
+
 
