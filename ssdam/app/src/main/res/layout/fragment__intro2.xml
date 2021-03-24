@@ -10,7 +10,10 @@
         android:id="@+id/img_Intro2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/deepgray"
+        android:src="@drawable/ssdam_list"
+        android:scaleType="fitXY"
         />
+
+
 
 </LinearLayout>

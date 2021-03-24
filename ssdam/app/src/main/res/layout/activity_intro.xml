@@ -9,11 +9,49 @@
     android:id="@+id/ll_IntroView1"
     tools:context=".viewpager.IntroMainActivity">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/intro_ViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/intro_ViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/intro_tv_Next"
+                android:layout_width="50dp"
+                android:text="▶"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_height="50dp"
+                android:textColor="@color/teal_700"
+                android:layout_gravity="center"
+                android:layout_marginLeft="180dp"
+                />
+
+            <TextView
+                android:id="@+id/intro_tv_Previous"
+                android:layout_width="50dp"
+                android:text="◀"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_height="50dp"
+                android:textColor="@color/teal_700"
+                android:layout_gravity="center"
+                android:layout_marginRight="180dp"
+                />
+        </FrameLayout>
+
+
+
+
 
 
 </LinearLayout>

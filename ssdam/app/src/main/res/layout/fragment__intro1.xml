@@ -7,12 +7,14 @@
     android:orientation="vertical"
     tools:context=".viewpager.Fragment_Intro1">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <ImageView
         android:id="@+id/img_Intro1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/green"
+        android:src="@drawable/ssdam_selectcolor"
+        android:scaleType="fitXY"
         />
+
 
 </LinearLayout>
