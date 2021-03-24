@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_ssdam"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ssdam">
-        <activity android:name=".UpdateColorActivity"></activity>
+        <activity android:name=".viewpager.IntroMainActivity"></activity>
+        <activity android:name=".UpdateColorActivity" />
         <activity android:name=".CheckEmailActivity" />
         <activity android:name=".PasswordActivity" />
         <activity android:name=".SelectColorActivity" />

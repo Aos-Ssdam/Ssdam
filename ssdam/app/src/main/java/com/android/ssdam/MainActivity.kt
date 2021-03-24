@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.ssdam.Calendar.ColorDecorator
 import com.android.ssdam.Calendar.MaxDecorator
 import com.android.ssdam.Calendar.SaturdayDecorator
 import com.android.ssdam.Calendar.SundayDecorator
