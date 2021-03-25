@@ -18,6 +18,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
 
 
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     private var days: ArrayList<Diary>? = ArrayList()
     private var dirayDB: DiaryDB? = null
     private var calDay: ArrayList<CalendarDay> = ArrayList()
-    private var calColor:String? = null
+    private var calColor:ArrayList<String> = ArrayList()
 
 
 
@@ -80,6 +81,10 @@ class MainActivity : AppCompatActivity() {
        calendar()
         connectGetData()
         btn()
+
+        Log.d("calday","$calDay")
+        Log.d("color" , "$calColor")
+
 
     }//onCreate
 
@@ -139,13 +144,14 @@ class MainActivity : AppCompatActivity() {
         val maxDecorator = MaxDecorator(enCalendarDay)
         val saturdayDecorator = SaturdayDecorator()
         val sundayDecorator = SundayDecorator()
-     //   val colorDecorator = ColorDecorator()
+       //val colorDecorator = ColorDecorator(calDay,calColor)
 
 
         materialCalendar.addDecorators(
                 saturdayDecorator,
                 sundayDecorator,
                 maxDecorator
+                //colorDecorator
         )
 
 
@@ -275,10 +281,8 @@ class MainActivity : AppCompatActivity() {
                 var cMonth = (cInsertDate.substring(4,6)).toInt()
                 var cDay = (cInsertDate.substring(6,cInsertDate.length)).toInt()
 
-                calDay = arrayListOf(CalendarDay.from(cYear,cMonth,cDay))
-
-                calColor =  cImageFileName
-                Log.d("calday","$calDay")
+                calDay.add(CalendarDay.from(cYear, cMonth, cDay))
+                calColor.add(cImageFileName)
 
             }
 
