@@ -48,7 +48,7 @@ class AddActivity : AppCompatActivity() {
         }
 
         //yyyy년 MM월 dd일--------------------------------
-         date = selectDay.toString()
+        date = selectDay.toString()
         var diaryDate :TextView = findViewById(R.id.tv_Add_Date)
         diaryDate.text = "${date.subSequence(0,4)}년 ${date.subSequence(4,6)}월 ${date.subSequence(6,date.length)}일"
 
@@ -60,16 +60,6 @@ class AddActivity : AppCompatActivity() {
         Ctite =  findViewById(R.id.et_Add_Title)
         Ccontent = findViewById(R.id.et_Add_Content)
 
-            // 세미 추가
-            var pref = getSharedPreferences("pref", 0)
-            var pwOK = "OK"
-            var edit = pref.edit()  // 수정모드
-            edit.putString("pwOK", pwOK)    // 1번째 인자에는 키 값을, 2번쨰 인자에는 실제 담아둘 값
-            edit.apply()    // 값을 저장 완료
-
-            Toast.makeText(this,"저장이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-
-            }
 
         addBtn = findViewById(R.id.tv_DiaryAdd)
         addBtn!!.setOnClickListener(onAddBtnClickListener)
@@ -142,21 +132,20 @@ class AddActivity : AppCompatActivity() {
             finish()
             startActivity(Intent(this, MainActivity::class.java))
 
-            }else{
-                Log.d("else", "c $cContent")
-                var builder = AlertDialog.Builder(this)
-                builder.setTitle("알림")
-                builder.setMessage("내용을 작성해주세요")
-                builder.setIcon(R.mipmap.ic_builder)
-                builder.setPositiveButton("확인", null)
+        }else{
+            Log.d("else", "c $cContent")
+            var builder = AlertDialog.Builder(this)
+            builder.setTitle("알림")
+            builder.setMessage("내용을 작성해주세요")
+            builder.setIcon(R.mipmap.ic_builder)
+            builder.setPositiveButton("확인", null)
 
-                builder.show()
-            }
+            builder.show()
         }
+    }
 
 
 
 
 
 }//====
-
