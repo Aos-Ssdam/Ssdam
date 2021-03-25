@@ -42,8 +42,16 @@ class AddActivity : AppCompatActivity() {
             // 내용이 null이 아니면 추가
             startActivity(Intent(this,MainActivity::class.java))
 
-            }
+            // 세미 추가
+            var pref = getSharedPreferences("pref", 0)
+            var pwOK = "OK"
+            var edit = pref.edit()  // 수정모드
+            edit.putString("pwOK", pwOK)    // 1번째 인자에는 키 값을, 2번쨰 인자에는 실제 담아둘 값
+            edit.apply()    // 값을 저장 완료
 
+            Toast.makeText(this,"저장이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+
+            }
     }
 
     fun image(){

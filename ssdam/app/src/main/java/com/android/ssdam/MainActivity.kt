@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity() {
         var edit = pref.edit()  // 수정모드
 
         // 저장된 비밀번호가 있으면
+
+
+
         if(savePw != ""){
             Log.e("태그", "저장된 비밀번호 있음 : " + pref.getString("pwOK", ""))
             if (pwOK == "OK") {
@@ -57,7 +60,9 @@ class MainActivity : AppCompatActivity() {
                 edit.apply()    // 값을 저장 완료
                 Log.e("태그", "pwOK값 초기화 : " + pref.getString("pwOK", ""))
             }else{
-                startActivity(Intent(this, PasswordActivity::class.java))
+
+                    startActivity(Intent(this, PasswordActivity::class.java))
+
             }
         }//----------------------------------
 
