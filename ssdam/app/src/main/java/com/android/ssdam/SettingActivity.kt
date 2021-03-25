@@ -23,12 +23,10 @@ class SettingActivity : AppCompatActivity() {
         settingList.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val selectItem = parent.getItemAtPosition(position)
            if(selectItem.equals("비밀번호 설정")){
-              // Toast.makeText(this, "비밀번호 설정", Toast.LENGTH_SHORT).show()
                val intent = Intent(this, FindpwActivity::class.java)
                startActivity(intent)
 
         }else if(selectItem.equals("공유하기")){
-              // Toast.makeText(this, "공유하기", Toast.LENGTH_SHORT).show()
                var builder = AlertDialog.Builder(this)
                builder.setTitle("알림")
                builder.setMessage("준비중인 기능입니다.")
@@ -37,7 +35,6 @@ class SettingActivity : AppCompatActivity() {
 
                builder.show()
            }else if(selectItem.equals("백업하기")){
-              // Toast.makeText(this, "백업하기", Toast.LENGTH_SHORT).show()
                var builder = AlertDialog.Builder(this)
                builder.setTitle("알림")
                builder.setMessage("준비중인 기능입니다.")
@@ -46,7 +43,6 @@ class SettingActivity : AppCompatActivity() {
 
                builder.show()
            }else if(selectItem.equals("개발자에게")){
-              // Toast.makeText(this, "개발자에게", Toast.LENGTH_SHORT).show()
                var builder = AlertDialog.Builder(this)
                builder.setTitle("알림")
                builder.setMessage("개발자 이메일 : tnctis21@naver.com")

@@ -32,6 +32,7 @@ class PasswordActivity : AppCompatActivity() {
         // 확인 버튼을 클릭 시
         btn_checkPw.setOnClickListener {
             if (checkPw.text.toString() == savePw){
+
                 var pwOK = "OK"
                 var edit = pref.edit()  // 수정모드
                 edit.putString("pwOK", pwOK)    // 1번째 인자에는 키 값을, 2번쨰 인자에는 실제 담아둘 값
@@ -41,19 +42,19 @@ class PasswordActivity : AppCompatActivity() {
 
                 Log.d("태그", "비밀번호확인창 : " + savePw + "과" + checkPw.text.toString())
             }else{
-                if (pwFailcheck >= 5){
+                if (pwFailcheck == 5){
+
                     // 입력창 readonly
                     checkPw.isEnabled = false
                     btn_checkPw.isEnabled = false
                     tv_findPw.isVisible = true
-                    Toast.makeText(this,"비밀번호 5번 이상 틀림", Toast.LENGTH_SHORT).show()
                 }else{
                     pwFailcheck += 1
                     Log.d("태그", "비밀번호실패창 : " + pwFailcheck)
                     var builder = AlertDialog.Builder(this)
                     builder.setTitle("경고!")
                     builder.setMessage("비밀번호가 틀렸습니다.(" + pwFailcheck + " / 5)")
-                    builder.setIcon(R.mipmap.ic_launcher)
+                    builder.setIcon(R.mipmap.ic_builder)
                     builder.setPositiveButton("확인", null)
 
                     builder.show()
