@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.ssdam">
-
     <!-- 인터넷 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,7 +11,9 @@
         android:roundIcon="@mipmap/ic_ssdam"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ssdam">
-        <activity android:name=".CheckEmailActivity"></activity>
+        <activity android:name=".viewpager.IntroMainActivity"></activity>
+        <activity android:name=".UpdateColorActivity" />
+        <activity android:name=".CheckEmailActivity" />
         <activity android:name=".PasswordActivity" />
         <activity android:name=".SelectColorActivity" />
         <activity android:name=".SettingActivity" />

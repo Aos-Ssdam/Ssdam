@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".viewpager.Fragment_Intro3">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/img_Intro2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/deepgray" />
+
+        <TextView
+            android:id="@+id/intro3_tv_Hide"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="앞으로 그만 볼래요"
+            android:gravity="center"
+            android:layout_gravity="right"
+            android:textColor="#2196F3"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <Button
+            android:id="@+id/intro3_btn_Next"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="#D003A9F4"
+            android:text="확인"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="250dp"
+            />
+
+
+    </FrameLayout>
+
+
+
+</LinearLayout>

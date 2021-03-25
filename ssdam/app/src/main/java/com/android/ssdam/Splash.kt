@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import com.android.ssdam.viewpager.IntroMainActivity
 
 class Splash : AppCompatActivity() {
 
@@ -15,8 +16,17 @@ class Splash : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            startActivity(Intent(this,MainActivity::class.java))
+
+            var pref = getSharedPreferences("hide", 0)
+            var hideValue = pref.getBoolean("hideValue", false)
+
+            if(hideValue != true){
+                startActivity(Intent(this,IntroMainActivity::class.java))
+            }else{
+                startActivity(Intent(this,MainActivity::class.java))
+            }
             finish()
+
         }, SPLASH_VIEW_TIME)
     }
 }

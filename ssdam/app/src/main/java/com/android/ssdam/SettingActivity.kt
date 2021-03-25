@@ -45,7 +45,7 @@ class SettingActivity : AppCompatActivity() {
            }else if(selectItem.equals("개발자에게")){
                var builder = AlertDialog.Builder(this)
                builder.setTitle("알림")
-               builder.setMessage("민우이메일넣어야")
+               builder.setMessage("개발자 이메일 : tnctis21@naver.com")
                builder.setIcon(R.mipmap.ic_builder)
                builder.setPositiveButton("확인", null)
 

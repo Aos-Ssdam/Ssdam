@@ -1,14 +1,13 @@
 package com.android.ssdam
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
@@ -71,6 +70,15 @@ class PasswordActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        val ll_Password = findViewById<LinearLayout>(R.id.ll_Password)
+        ll_Password.setOnClickListener {
+            hideKeyboard()
+        }
+    }
+
     override fun onBackPressed() {
        //super.onBackPressed()
         // 뒤로가기 버튼 클릭
@@ -86,6 +94,18 @@ class PasswordActivity : AppCompatActivity() {
             android.os.Process.killProcess(android.os.Process.myPid());
         }
 
+    }
+
+    // 키보드 내리기
+    fun hideKeyboard()
+    {
+        var view = this.currentFocus
+
+        if(view != null)
+        {
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
 

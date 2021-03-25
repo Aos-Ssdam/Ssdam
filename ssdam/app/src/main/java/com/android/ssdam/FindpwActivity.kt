@@ -1,12 +1,11 @@
 package com.android.ssdam
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import java.util.regex.Matcher
@@ -100,6 +99,26 @@ class FindpwActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val ll_FindPW = findViewById<LinearLayout>(R.id.ll_FindPW)
+        ll_FindPW.setOnClickListener {
+            hideKeyboard()
+        }
+    }
+
+    // 키보드 내리기
+    fun hideKeyboard()
+    {
+        var view = this.currentFocus
+
+        if(view != null)
+        {
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 

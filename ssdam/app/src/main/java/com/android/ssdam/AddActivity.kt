@@ -1,13 +1,17 @@
 package com.android.ssdam
 
+import android.content.Context
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import com.android.ssdam.sqLite.DiaryDB
+import java.lang.Exception
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,10 +20,24 @@ class AddActivity : AppCompatActivity() {
 
     var date = ""
     var color = ""
+    var Ctite : EditText? = null
+    var Ccontent: EditText? = null
+    var addBtn: TextView? = null
+
+    //sqlite
+    var diaryDB: DiaryDB? = null
+
+    var cTitle: String? = null
+    var cContent: String? = null
+    var cImageFileName: String? = null
+    var cInsertDate: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
+
+        //SQLite
+        diaryDB = DiaryDB(this)
 
         //값 받아오기------------------------------------------------
         val selectDay = intent.getStringExtra("selectDay")
@@ -34,13 +52,13 @@ class AddActivity : AppCompatActivity() {
         var diaryDate :TextView = findViewById(R.id.tv_Add_Date)
         diaryDate.text = "${date.subSequence(0,4)}년 ${date.subSequence(4,6)}월 ${date.subSequence(6,date.length)}일"
 
+        Log.d("date","$date")
+
         image()
 
-        // 작성버튼
-        var AddBtn = findViewById<TextView>(R.id.tv_DiaryAdd)
-        AddBtn.setOnClickListener {
-            // 내용이 null이 아니면 추가
-            startActivity(Intent(this,MainActivity::class.java))
+        // 제목, 내용
+        Ctite =  findViewById(R.id.et_Add_Title)
+        Ccontent = findViewById(R.id.et_Add_Content)
 
             // 세미 추가
             var pref = getSharedPreferences("pref", 0)
@@ -52,6 +70,31 @@ class AddActivity : AppCompatActivity() {
             Toast.makeText(this,"저장이 완료되었습니다.", Toast.LENGTH_SHORT).show()
 
             }
+
+        addBtn = findViewById(R.id.tv_DiaryAdd)
+        addBtn!!.setOnClickListener(onAddBtnClickListener)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val ll_Add = findViewById<LinearLayout>(R.id.ll_Add)
+        ll_Add?.setOnClickListener {
+            hideKeyboard()
+        }
+
+    }
+
+    // 키보드 내리기
+    fun hideKeyboard()
+    {
+        var view = this.currentFocus
+
+        if(view != null)
+        {
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     fun image(){
@@ -73,6 +116,47 @@ class AddActivity : AppCompatActivity() {
         }
 
     }//image
+
+    private var onAddBtnClickListener = View.OnClickListener {
+        var db : SQLiteDatabase? = null
+
+        cInsertDate = date
+        cImageFileName = color
+        cTitle = Ctite!!.text.toString().trim()
+        cContent = Ccontent!!.text.toString().trim()
+
+        Log.d("write","c $cTitle")
+        Log.d("write","c $cImageFileName")
+
+        if (cTitle != "" && cContent != ""){
+            try {
+                db = diaryDB!!.writableDatabase
+                val query = "INSERT INTO contents (cTitle, cContent, cImageFileName, cInsertDate) VALUES ('$cTitle', '$cContent' , '$cImageFileName', '$cInsertDate');"
+                db!!.execSQL(query)
+                diaryDB!!.close()
+                Toast.makeText(this, "$cInsertDate 일기작성 완료", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                print(e.printStackTrace())
+                Toast.makeText(this, "Insert Error", Toast.LENGTH_LONG).show()
+            }
+            finish()
+            startActivity(Intent(this, MainActivity::class.java))
+
+            }else{
+                Log.d("else", "c $cContent")
+                var builder = AlertDialog.Builder(this)
+                builder.setTitle("알림")
+                builder.setMessage("내용을 작성해주세요")
+                builder.setIcon(R.mipmap.ic_builder)
+                builder.setPositiveButton("확인", null)
+
+                builder.show()
+            }
+        }
+
+
+
+
 
 }//====
 

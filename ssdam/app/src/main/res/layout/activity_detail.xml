@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity"
     android:orientation="vertical"
+    android:id="@+id/ll_Detail"
     android:gravity="center">
 
     <TextView
@@ -41,13 +42,12 @@
         android:id="@+id/et_Detail_Title"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:hint="제목을 적어주세요"
+        android:hint="제목"
         android:textColorHint="#c8c8c8"
         android:textSize="16dp"
         android:textAlignment="center"
         android:gravity="center_horizontal"
         android:layout_marginBottom="20dp"
-
         />
 
     <EditText
@@ -60,7 +60,6 @@
         android:inputType="textMultiLine"
         android:background="@drawable/edittextborder"
         android:padding="14dp"
-
         />
     </LinearLayout>
 

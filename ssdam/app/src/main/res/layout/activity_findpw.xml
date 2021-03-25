@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/ll_FindPW"
     tools:context=".FindpwActivity">
 
     <LinearLayout
@@ -38,6 +39,9 @@
         android:hint="비밀번호를 입력하세요(4자리)"
         android:textSize="15dp"
         android:password="true"
+        android:inputType="number"
+        android:maxLength="4"
+        android:textAlignment="center"
         />
 
     <EditText
@@ -48,6 +52,9 @@
         android:hint="핸드폰번호를 입력하세요.(Ex.1011112222)"
         android:textSize="13dp"
         android:layout_marginTop="20dp"
+        android:inputType="number"
+        android:maxLength="10"
+        android:textAlignment="center"
         />
 
     <Button
