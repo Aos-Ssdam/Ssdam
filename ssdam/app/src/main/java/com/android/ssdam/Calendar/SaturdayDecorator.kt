@@ -8,6 +8,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import java.util.*
+import kotlin.reflect.typeOf
 
 class SaturdayDecorator : DayViewDecorator{
 

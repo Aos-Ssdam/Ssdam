@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.ssdam.Calendar.ColorDecorator
 import com.android.ssdam.Calendar.MaxDecorator
 import com.android.ssdam.Calendar.SaturdayDecorator
 import com.android.ssdam.Calendar.SundayDecorator
@@ -19,7 +20,6 @@ import com.prolificinteractive.materialcalendarview.format.TitleFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
 
 
 class MainActivity : AppCompatActivity() {
@@ -146,17 +146,19 @@ class MainActivity : AppCompatActivity() {
 
 
         //decorator
+        val drawable = R.drawable.cal_beige
+
         val maxDecorator = MaxDecorator(enCalendarDay)
         val saturdayDecorator = SaturdayDecorator()
         val sundayDecorator = SundayDecorator()
-       //val colorDecorator = ColorDecorator(calDay,calColor)
+        val colorDecorator = ColorDecorator(this, drawable, calDay, calColor)
 
 
         materialCalendar.addDecorators(
                 saturdayDecorator,
                 sundayDecorator,
-                maxDecorator
-                //colorDecorator
+                maxDecorator,
+                colorDecorator
         )
 
 
