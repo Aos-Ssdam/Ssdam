@@ -24,28 +24,32 @@ class ColorDecorator(context: Activity, drawableID: Int, calday: ArrayList<Calen
     val colors = color
 
     override fun shouldDecorate(day: CalendarDay?): Boolean {
-
-
 //
-        println("days[0].date : ${days[0].date}")
-        println("day?.date : ${day?.date}")
-        println("result : ${day?.date == days[0].date}")
-        println("개수 : ${days.size}")
 
 
 
 
-        if(days.isEmpty()){
+
+        if(count == 0){
             return false
         }else{
             println("들어오나?")
+            println("day : ${day}")
+            println("days : ${days}")
+            println("result : ${day == days[0]}")
+            println("개수 : ${days.size}")
+            println("년, ${days[0].year}, 월 : ${(days[0].month)}, 일 : ${days[0].day}")
+            println("변환 : ${days[0].date.time}")
+
+            println("변환 : ${day?.date?.time}")
+
             for(i in 0..days.size) {
                 count -= i
                 cday = i
 
 
             }
-            return days.contains()
+            return days.contains(day)
             // (day?.day == days[cday].day) && (day?.month == (days[cday].month - 1)) && (day?.year == days[0].year)
         }
     }

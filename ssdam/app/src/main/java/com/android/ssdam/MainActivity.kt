@@ -288,7 +288,7 @@ class MainActivity : AppCompatActivity() {
                 var cMonth = (cInsertDate.substring(4,6)).toInt()
                 var cDay = (cInsertDate.substring(6,cInsertDate.length)).toInt()
 
-                calDay.add(CalendarDay.from(cYear, cMonth, cDay))
+                calDay.add(CalendarDay.from(cYear, (cMonth - 1), cDay))
                 calColor.add(cImageFileName)
 
             }
