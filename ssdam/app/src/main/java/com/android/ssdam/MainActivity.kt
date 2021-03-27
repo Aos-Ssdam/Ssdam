@@ -2,7 +2,9 @@ package com.android.ssdam
 
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Color
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -44,8 +46,7 @@ class MainActivity : AppCompatActivity() {
     private var days: ArrayList<Diary>? = ArrayList()
     private var dirayDB: DiaryDB? = null
     private var calDay: ArrayList<CalendarDay> = ArrayList()
-    private var calColor:ArrayList<String> = ArrayList()
-
+    private var calColor:ArrayList<Int> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +56,9 @@ class MainActivity : AppCompatActivity() {
         //sqlite-----------------
 
         dirayDB = DiaryDB((this))
+        materialCalendar?.setOnDateChangedListener { widget, date, selected ->
+
+        }
 
         //-----------------------
 
@@ -151,7 +155,7 @@ class MainActivity : AppCompatActivity() {
         val maxDecorator = MaxDecorator(enCalendarDay)
         val saturdayDecorator = SaturdayDecorator()
         val sundayDecorator = SundayDecorator()
-        val colorDecorator = ColorDecorator(this, drawable, calDay, calColor)
+        val colorDecorator = ColorDecorator( calDay, Color.parseColor("#97c1a0"))
 
 
         materialCalendar.addDecorators(
@@ -289,7 +293,7 @@ class MainActivity : AppCompatActivity() {
                 var cDay = (cInsertDate.substring(6,cInsertDate.length)).toInt()
 
                 calDay.add(CalendarDay.from(cYear, (cMonth - 1), cDay))
-                calColor.add(cImageFileName)
+                calColor.add(Color.parseColor("#ffffb5"))
 
             }
 
